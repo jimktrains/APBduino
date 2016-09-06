@@ -48,16 +48,13 @@ class TrackBlock {
   int tracks[SECTIONS];
 
   public:
-    template<unsigned char PS>
-    TrackBlock(int(&tracks)[PS]);
+    TrackBlock(int(&tracks)[SECTIONS]);
 };
 
 
 template<unsigned char SECTIONS>
-template<unsigned char PS>
-TrackBlock<SECTIONS>::TrackBlock(int(&tracks)[PS])
+TrackBlock<SECTIONS>::TrackBlock(int(&tracks)[SECTIONS])
 {
-  static_assert(PS == SECTIONS, "Number of track segments is unexpected");
 }
 
 #endif

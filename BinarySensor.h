@@ -60,8 +60,7 @@ class BinarySensor
      * 10ms L->R and 300ms H->F
      * 10ms L->R and 3s H->F
      */
-    template<unsigned char BOUNCE_COUNT>
-    BinarySensor(int sensorPin, unsigned int(&bounce)[BOUNCE_COUNT][2]);
+    BinarySensor(int sensorPin, unsigned int(&bounce)[PHASES][2]);
 
     /**
      * Update the sensor values.
@@ -76,12 +75,9 @@ class BinarySensor
 
 // Can't pass arrays by value
 template<unsigned char PHASES>
-template<unsigned char BOUNCE_COUNT>
-BinarySensor<PHASES>::BinarySensor(int sensorPin, unsigned int(&bounce)[BOUNCE_COUNT][2]) :
+BinarySensor<PHASES>::BinarySensor(int sensorPin, unsigned int(&bounce)[PHASES][2]) :
  sensorPin(sensorPin)
-{
-  static_assert(BOUNCE_COUNT == PHASES, "Incorrect number of phases");
-  
+{  
   pinMode(sensorPin, INPUT);
   for(unsigned char i = 0; i < PHASES; i++)
   {
