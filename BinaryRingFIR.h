@@ -44,6 +44,8 @@ boolean BinaryRingFIR<READINGS>::add(boolean val)
 template<int READINGS>
 boolean BinaryRingFIR<READINGS>::value()
 {
+  // I'm assuming the compiler will turn the
+  // ceil(half) part of this computation
   return oneCount >= ( (READINGS >> 2) + (READINGS & 1) );
 }
 

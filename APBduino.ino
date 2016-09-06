@@ -1,11 +1,14 @@
 #include "Blink.h"
 #include "BinarySensor.h"
+#include "TrackBlock.h"
 
 Blink blinker = Blink(8, 500, 250);
 Blink fastBlinker = Blink(8, 100, 50);
 unsigned int bounces[2][2] = {{10, 300}, {10, 3000}};
-BinarySensor<2> irSensor = BinarySensor<2>(6, bounces);
+BinarySensor<2> irSensor = BinarySensor<2>(6, (unsigned int[2][2]){{10, 300}, {10, 3000}});
 
+int x[1] = {1};
+TrackBlock<1> block = TrackBlock<1>(x);
 
 void setup() {
   Serial.begin(9600);

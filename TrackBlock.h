@@ -1,12 +1,14 @@
 #ifndef __TRACKBLOCK_H__
 #define __TRACKBLOCK_H__
 
+#include <assert.h>
+
 enum TrackOcc
 {
   None,
   EastBound,
   WestBound
-}
+};
 
 /*
  * Yes, there are many more, but some
@@ -39,12 +41,23 @@ enum SignalAspect
    * Stop
    */
   Stop
-}
+};
 
+template<unsigned char SECTIONS>
 class TrackBlock {
-  BinarySensor eastOccSensor;
-  BinarySensor westOccSensor;
-  TrackOcc occupancy;
+  int tracks[SECTIONS];
+
+  public:
+    template<unsigned char PS>
+    TrackBlock(int(&tracks)[PS]);
+};
+
+
+template<unsigned char SECTIONS>
+template<unsigned char PS>
+TrackBlock<SECTIONS>::TrackBlock(int(&tracks)[PS])
+{
+  static_assert(PS == SECTIONS, "Number of track segments is unexpected");
 }
 
 #endif
