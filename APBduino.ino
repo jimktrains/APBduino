@@ -32,11 +32,11 @@ void loop(){
     fastBlinker.blink(1);
     if (carCount == 1)
     {
-      Serial.println("New Train!");
+      Serial.println(F("New Train!"));
     }
     else
     {
-      Serial.print("Car: ");
+      Serial.print(F("Car: "));
       Serial.println(carCount);
     }
   }
@@ -44,7 +44,7 @@ void loop(){
   if (trainPresent == BinarySensorState::Falling)
   {
     blinker.blink(carCount);
-    Serial.println("Train Passed :(");
+    Serial.println(F("Train Passed :("));
     carCount = 0;
   }
 }
