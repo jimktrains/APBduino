@@ -60,7 +60,7 @@ class BinarySensor
      * 10ms L->R and 300ms H->F
      * 10ms L->R and 3s H->F
      */
-    BinarySensor(int sensorPin, unsigned int(&bounce)[PHASES][2]);
+    BinarySensor(int sensorPin, const unsigned int(&bounce)[PHASES][2]);
 
     /**
      * Update the sensor values.
@@ -75,7 +75,7 @@ class BinarySensor
 
 // Can't pass arrays by value
 template<unsigned char PHASES>
-BinarySensor<PHASES>::BinarySensor(int sensorPin, unsigned int(&bounce)[PHASES][2]) :
+BinarySensor<PHASES>::BinarySensor(int sensorPin, const unsigned int(&bounce)[PHASES][2]) :
  sensorPin(sensorPin)
 {  
   pinMode(sensorPin, INPUT);
